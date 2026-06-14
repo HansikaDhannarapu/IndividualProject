@@ -51,8 +51,8 @@ OPENAI_API_KEY=
 Create `frontend/.env`:
 
 ```env
-VITE_API_URL=http://localhost:5000
-VITE_SOCKET_URL=http://localhost:5000
+VITE_API_URL=https://individualproject-2b0a.onrender.com
+VITE_SOCKET_URL=https://individualproject-2b0a.onrender.com
 VITE_APP_NAME=Campus Resell Portal
 ```
 
