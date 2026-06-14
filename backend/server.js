@@ -27,7 +27,21 @@ const Chat = require('./models/Chat');
 const Notification = require('./models/Notification');
 
 const app = express();
-app.use(cors());
+
+const defaultClientUrls = [
+	'http://localhost:5173',
+	'https://individual-project-nine-gules.vercel.app',
+];
+const clientUrls = [
+	...defaultClientUrls,
+	...(process.env.CLIENT_URL || '').split(','),
+]
+	.map((url) => url.trim())
+	.filter(Boolean);
+
+app.use(cors({
+	origin: clientUrls,
+}));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, process.env.UPLOAD_DIR || 'uploads')));
 
@@ -59,7 +73,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server, {
 	cors: {
-		origin: process.env.CLIENT_URL || 'http://localhost:5173',
+		origin: clientUrls,
 		methods: ['GET', 'POST'],
 	},
 });
@@ -129,4 +143,3 @@ io.on('connection', (socket) => {
 });
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
