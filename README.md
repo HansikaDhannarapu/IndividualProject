@@ -1,42 +1,86 @@
 # Campus Resell Portal
 
-Campus Resell Portal is a MERN marketplace for university students to buy and sell second-hand campus essentials such as books, cycles, electronics, furniture, stationery, and hostel items.
+Campus Resell Portal is a MERN stack project built for students to buy and sell second-hand items inside a university campus. Students can list things like books, cycles, electronics, furniture, stationery, and hostel items so other students can find them easily.
 
-This project is being built module by module so the code stays beginner-friendly and easy to explain during reviews, internships, placements, and final-year presentations.
+The project includes authentication, product listing, wishlist, chat, notifications, ratings, analytics, and admin features.
+
+## Live Links
+
+Frontend:
+
+```text
+https://individual-project-nine-gules.vercel.app/
+```
+
+Backend:
+
+```text
+https://individualproject-2b0a.onrender.com
+```
 
 ## Tech Stack
 
-- Frontend: React, Vite, Tailwind CSS, React Router DOM, Axios, Socket.io Client, Recharts
-- Backend: Node.js, Express.js, Socket.io, JWT, bcrypt, Multer
-- Database: MongoDB with Mongoose
+- React, Vite, Tailwind CSS
+- Node.js, Express.js
+- MongoDB, Mongoose
+- JWT authentication
+- Socket.io for real-time chat and notifications
+- Recharts for analytics
+- Vercel and Render for deployment
 
-## Folder Structure
+## Features
+
+- Student signup and login
+- Product upload with image, price, category, condition, and pickup location
+- Search and filter products
+- Wishlist
+- Real-time chat between buyer and seller
+- Real-time notifications
+- Ratings and product reports
+- Admin dashboard
+- AI price and description suggestions
+
+## Project Structure
 
 ```text
 UniCycle/
-frontend/
-  src/
-    components/
-    context/
-    pages/
-    services/
-  .env
+  frontend/   React frontend
+  backend/    Express and MongoDB backend
+```
 
-backend/
-  config/
-  controllers/
-  middleware/
-  models/
-  routes/
-  sockets/
-  uploads/
-  utils/
-  .env
+## Setup
+
+Install and run the backend:
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Install and run the frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs on:
+
+```text
+http://localhost:5173
+```
+
+Backend runs on:
+
+```text
+http://localhost:5000
 ```
 
 ## Environment Variables
 
-Create `backend/.env`:
+Backend `.env`:
 
 ```env
 PORT=5000
@@ -48,81 +92,45 @@ UPLOAD_DIR=uploads
 OPENAI_API_KEY=
 ```
 
-Create `frontend/.env`:
+Frontend `.env`:
+
+```env
+VITE_API_URL=http://localhost:5000
+VITE_SOCKET_URL=http://localhost:5000
+```
+
+For deployed frontend, Vercel uses:
 
 ```env
 VITE_API_URL=https://individualproject-2b0a.onrender.com
 VITE_SOCKET_URL=https://individualproject-2b0a.onrender.com
-VITE_APP_NAME=Campus Resell Portal
 ```
 
-## Setup Instructions
+For deployed backend, Render uses:
 
-Install backend dependencies:
-
-```bash
-cd backend
-npm install
+```env
+CLIENT_URL=https://individual-project-nine-gules.vercel.app
 ```
 
-Install frontend dependencies:
+## Demo Data
 
-```bash
-cd frontend
-npm install
-```
-
-Run the backend:
-
-```bash
-cd backend
-npm run dev
-```
-
-Run the frontend:
-
-```bash
-cd frontend
-npm run dev
-```
-
-Open the frontend at:
-
-```text
-http://localhost:5173
-```
-
-Seed demo data:
+To add demo data:
 
 ```bash
 cd backend
 npm run seed
 ```
 
-Demo login after seeding:
+Demo admin login:
 
 ```text
 admin@anurag.edu / password123
 ```
 
-## MongoDB Setup
+## Deployment
 
-For local MongoDB, keep:
+The frontend is deployed on Vercel from the `frontend` folder. The backend is deployed on Render, and MongoDB can be local or hosted on MongoDB Atlas.
 
-```env
-MONGO_URI=mongodb://127.0.0.1:27017/campus-resell
-```
+## What I Learned
 
-For MongoDB Atlas, replace `MONGO_URI` with your Atlas connection string.
-
-## Module Plan
-
-1. Project setup, dependencies, folder structure, README, environment setup
-2. Authentication and protected routes
-3. Product listing, image upload, search, filters, pagination
-4. Wishlist, reservation status, ratings
-5. Real-time chat and notifications
-6. AI price suggestion, description generator, and scam-risk detection
-7. Analytics dashboard with Recharts
-8. Admin dashboard and moderation controls
-9. Seed data and final polish
+Through this project, I learned how to connect a React frontend with an Express backend, use MongoDB with Mongoose, handle authentication, upload files, work with real-time features using Socket.io, and deploy a full-stack project.
