@@ -59,7 +59,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server, {
 	cors: {
-		origin: process.env.CLIENT_URL || 'http://localhost:5173,https://individualproject-2b0a.onrender.com',
+		origin: process.env.CLIENT_URL || 'http://localhost:5173',
 		methods: ['GET', 'POST'],
 	},
 });
