@@ -6,12 +6,12 @@ import { createProduct } from '../services/productService';
 const initialForm = {
   name: '',
   description: '',
-  category: 'Books',
-  condition: 'Good',
+  category: '',
+  condition: '',
   price: '',
   originalPrice: '',
   age: '',
-  pickupLocation: 'Library Gate',
+  pickupLocation: '',
   images: '',
   quickSell: false,
   bundleItems: '',
@@ -28,6 +28,12 @@ const SellProduct = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handlePriceChange = (e) => {
+    const value = e.target.value.replace(/[^\d.]/g, '');
+    const [whole, ...decimalParts] = value.split('.');
+    const nextValue = decimalParts.length ? `${whole}.${decimalParts.join('')}` : whole;
+    setForm({ ...form, [e.target.name]: nextValue });
+  };
 
   const handleSuggestPrice = async () => {
     const startedAt = Date.now();
@@ -96,21 +102,22 @@ const SellProduct = () => {
   return (
     <main className="narrow">
       <h1>List an item</h1>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit} autoComplete="off">
         <label className="fieldLabel">
           <span>Item name <span className="requiredStar">*</span></span>
-          <input name="name" value={form.name} onChange={handleChange} placeholder="Laptop Desk" required />
+          <input name="name" value={form.name} onChange={handleChange} placeholder="Laptop desk, chemistry guide, cycle" autoComplete="off" required />
         </label>
 
         <label className="fieldLabel">
           <span>Description <span className="requiredStar">*</span></span>
-          <textarea name="description" value={form.description} onChange={handleChange} placeholder="Condition, reason for selling, included accessories" required />
+          <textarea name="description" value={form.description} onChange={handleChange} placeholder="Mention condition, included accessories, and pickup details" autoComplete="off" required />
         </label>
 
         <div className="twoCol">
           <label className="fieldLabel">
-            Category
-            <select name="category" value={form.category} onChange={handleChange}>
+            <span>Category <span className="requiredStar">*</span></span>
+            <select name="category" value={form.category} onChange={handleChange} required>
+              <option value="" disabled>Select category</option>
               <option>Books</option>
               <option>Electronics</option>
               <option>Cycles</option>
@@ -121,8 +128,9 @@ const SellProduct = () => {
             </select>
           </label>
           <label className="fieldLabel">
-            Condition
-            <select name="condition" value={form.condition} onChange={handleChange}>
+            <span>Condition <span className="requiredStar">*</span></span>
+            <select name="condition" value={form.condition} onChange={handleChange} required>
+              <option value="" disabled>Select condition</option>
               <option>New</option>
               <option>Good</option>
               <option>Fair</option>
@@ -134,25 +142,26 @@ const SellProduct = () => {
         <div className="twoCol">
           <label className="fieldLabel">
             <span>Selling price <span className="requiredStar">*</span></span>
-            <input name="price" type="number" min="0" value={form.price} onChange={handleChange} placeholder="500" required />
+            <input name="price" type="text" inputMode="decimal" value={form.price} onChange={handlePriceChange} placeholder="500" autoComplete="off" required />
             <button className="button secondary" type="button" onClick={handleSuggestPrice} disabled={Boolean(pendingAction)}>
               {pendingAction === 'price' ? 'Suggesting...' : 'Suggest selling price'}
             </button>
           </label>
           <label className="fieldLabel">
             Original price
-            <input name="originalPrice" type="number" min="0" value={form.originalPrice} onChange={handleChange} placeholder="900" />
+            <input name="originalPrice" type="text" inputMode="decimal" value={form.originalPrice} onChange={handlePriceChange} placeholder="900" autoComplete="off" />
           </label>
         </div>
 
         <div className="twoCol">
           <label className="fieldLabel">
             Item age
-            <input name="age" value={form.age} onChange={handleChange} placeholder="6 months" />
+            <input name="age" value={form.age} onChange={handleChange} placeholder="6 months, 1 year, barely used" autoComplete="off" />
           </label>
           <label className="fieldLabel">
-            Pickup location
-            <select name="pickupLocation" value={form.pickupLocation} onChange={handleChange}>
+            <span>Pickup location <span className="requiredStar">*</span></span>
+            <select name="pickupLocation" value={form.pickupLocation} onChange={handleChange} required>
+              <option value="" disabled>Select pickup location</option>
               <option>Library Gate</option>
               <option>Main Block</option>
               <option>Hostel Block A</option>
@@ -164,12 +173,12 @@ const SellProduct = () => {
 
         <label className="fieldLabel">
           Bundle items
-          <input name="bundleItems" value={form.bundleItems} onChange={handleChange} placeholder="Mouse pad, cable organizer" />
+          <input name="bundleItems" value={form.bundleItems} onChange={handleChange} placeholder="Mouse pad, cable organizer" autoComplete="off" />
         </label>
 
         <label className="fieldLabel">
           Image URLs
-          <input name="images" value={form.images} onChange={handleChange} placeholder="Paste image links separated by commas" />
+          <input name="images" value={form.images} onChange={handleChange} placeholder="Paste image links separated by commas" autoComplete="off" />
         </label>
 
         <label className="fieldLabel">
