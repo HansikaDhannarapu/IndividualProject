@@ -115,8 +115,8 @@ const SellProduct = () => {
 
         <div className="twoCol">
           <label className="fieldLabel">
-            <span>Category <span className="requiredStar">*</span></span>
-            <select name="category" value={form.category} onChange={handleChange} required>
+            Category
+            <select name="category" value={form.category} onChange={handleChange}>
               <option value="" disabled>Select category</option>
               <option>Books</option>
               <option>Electronics</option>
@@ -128,8 +128,8 @@ const SellProduct = () => {
             </select>
           </label>
           <label className="fieldLabel">
-            <span>Condition <span className="requiredStar">*</span></span>
-            <select name="condition" value={form.condition} onChange={handleChange} required>
+            Condition
+            <select name="condition" value={form.condition} onChange={handleChange}>
               <option value="" disabled>Select condition</option>
               <option>New</option>
               <option>Good</option>
@@ -159,8 +159,8 @@ const SellProduct = () => {
             <input name="age" value={form.age} onChange={handleChange} placeholder="6 months, 1 year, barely used" autoComplete="off" />
           </label>
           <label className="fieldLabel">
-            <span>Pickup location <span className="requiredStar">*</span></span>
-            <select name="pickupLocation" value={form.pickupLocation} onChange={handleChange} required>
+            Pickup location
+            <select name="pickupLocation" value={form.pickupLocation} onChange={handleChange}>
               <option value="" disabled>Select pickup location</option>
               <option>Library Gate</option>
               <option>Main Block</option>
